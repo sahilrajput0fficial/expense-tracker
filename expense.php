@@ -33,12 +33,12 @@
                   <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
                   <div class="mt-1 relative rounded-md shadow-sm">
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <span class="text-gray-500 sm:text-sm">$</span>
+                      <span class="text-gray-500 sm:text-sm">₹</span>
                     </div>
                     <input id="amount" name="amount" type="number" step="0.01" placeholder="0.00"
                       class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-red-600 focus:ring-red-600 sm:text-sm" />
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span class="text-gray-500 sm:text-sm">USD</span>
+                      <span class="text-gray-500 sm:text-sm">INR</span>
                     </div>
                   </div>
                 </div>
@@ -57,14 +57,12 @@
                   <label for="frequency" class="block text-sm font-medium text-gray-700">Frequency</label>
                   <select id="frequency" name="frequency"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-600 focus:ring-red-600 sm:text-sm">
-                    <option>One-time</option>
-                    <option selected>Monthly</option>
+                    <option selected>One-time</option>
+                    <option >Monthly</option>
                     <option>Quarterly</option>
                     <option>Annually</option>
                   </select>
                 </div>
-
-                <!-- Submit Button -->
                 <button type="submit"
                   class="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-600">
                   <i class="fa-solid fa-plus text-sm"></i>
@@ -95,7 +93,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 text-slate-800">$50.00</td>
+                    <td class="px-6 py-4 text-slate-800">₹50.00</td>
                     <td class="px-6 py-4 text-slate-600">Food</td>
                     <td class="px-6 py-4 text-slate-600">2024-01-15</td>
                     <td class="px-6 py-4 text-slate-600">Credit Card</td>

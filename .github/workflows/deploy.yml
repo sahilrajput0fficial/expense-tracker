@@ -1,0 +1,24 @@
+name: 🚀 Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main   # or master, depending on your repo
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Upload files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ftp
+          local-dir: ./   # which folder to upload
+          server-dir: 	my-money.wuaze.com/htdocs/  # InfinityFree root folder

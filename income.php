@@ -5,9 +5,10 @@
   <title>Income Track</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link rel = "stylesheet" href ="style.css">
+  
 </head>
 <body class="bg-gray-50">
-<div class="flex flex-col h-screen w-full">
+<div class="flex flex-col h-screen w-full overflow-x-hidden">
   <?php include 'header.php'?>
 
     
