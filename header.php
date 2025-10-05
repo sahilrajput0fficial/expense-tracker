@@ -5,7 +5,7 @@
   </div>
   <div class="flex items-center gap-6">
     <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
-      <a class="hover:text-slate-900" href="dashboard.php">Dashboard</a>
+      <a class="hover:text-slate-900" href="index.php">Dashboard</a>
       <a class="hover:text-slate-900" href="expense.php">Expenses</a>
       <a class="hover:text-slate-900" href="income.php">Income</a>
       <a class="hover:text-slate-900" href="budget.php">My Budget</a>

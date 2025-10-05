@@ -10,7 +10,7 @@
   <?php include 'header.php'?>
   <div class="relative flex w-full flex-col">
     <div class="flex flex-col">
-      <header class="bg-white p-6 pb-0 w-full">
+      <header class=" p-6 pb-0 w-full">
         <div class="flex justify-between items-center">
           <div>
             <h1 class="text-2xl font-bold text-gray-900">Budgets</h1>
