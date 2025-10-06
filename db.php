@@ -6,7 +6,6 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.
     $pass = ""; 
     $db   = "expense"; 
 } else {
-
     $host = "sql300.infinityfree.com";         
     $user = "if0_39503733";             
     $pass = "sahilrajput0ffi";             

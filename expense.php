@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-  <script src="expense.js"></script>
+  <script defer src="expense.js"></script>
 </head>
 
 <body class="bg-gray-50">
