@@ -1,3 +1,31 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('#expense_form');
+    form.onsubmit = async function(event) {
+        event.preventDefault();
+
+    const valuefromForm = new FormData(form);
+    valuefromForm.append("user_id", 1);
+    try {
+      let response = await fetch("api/expense_api.php", {
+        method: 'POST',
+        body: valuefromForm
+      });
+      let data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        console.log('Expense added successfully');
+        form.reset();
+        loadExpenses();
+      } else {
+        alert('Failed to add expense: ' + data.message);
+      }
+    } catch(err) {
+      console.error(err);
+      alert('Error adding expense.');
+    }
+  };
+});
+
 async function loadExpenses() {
     try {
         let response = await fetch("api/expense_api.php", {
@@ -7,6 +35,13 @@ async function loadExpenses() {
         let expenses = await response.json();
         console.log(expenses);
         let data = document.querySelector("#expense tbody");
+        if(data == null) {
+            console.log("tbody not found, creating one");
+            const table = document.querySelector("#expense");
+            data = document.createElement('tbody');
+            data.className = 'divide-y divide-gray-200';
+            table.appendChild(data);
+        }
         data.innerHTML = '';
         expenses.forEach(exp => {
             data.innerHTML += `
@@ -19,7 +54,7 @@ async function loadExpenses() {
           <td class="px-6 py-4 text-slate-600">${exp.frequency}</td>
           <td class="px-6 py-4 text-right">
             <div class=" relative inline-block text-left dropdown-container">
-              <button onclick="toggleDropdown(event)" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50">
+              <button onclick="toggleDropdown(event)" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 border hover:bg-gray-50">
                 Options
                 <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="-mr-1 size-5 text-gray-400">
                   <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -56,7 +91,6 @@ async function loadExpenses() {
     }
 
 }
-
 function toggleDropdown(event) {
     const dropdown = event.currentTarget.nextElementSibling;
     console.log(dropdown);
@@ -67,7 +101,6 @@ function toggleDropdown(event) {
     });
     dropdown.classList.toggle('hidden');
 }
-
 document.addEventListener('click', e => {
     if (!e.target.closest('.dropdown-container')) {
         document.querySelectorAll('.dropdown').forEach(el => {
@@ -75,8 +108,6 @@ document.addEventListener('click', e => {
         });
     }
 });
-
-
 async function openEdit(id, name, amount, category, notes, method) {
     document.getElementById("edit-id").value = id;
     document.getElementById("edit-expense_name").value = name;
@@ -157,7 +188,7 @@ async function deleteExpense(id) {
         e.preventDefault();
         try {
             let response = await fetch("api/expense_api.php", {
-                method: "DEL",
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
                 },

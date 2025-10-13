@@ -15,16 +15,17 @@
 <body class="bg-gray-50">
   <div class="flex flex-col h-screen w-full">
     <?php include 'header.php' ?>
-    <main class="flex-1  px-10 py-8">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-8 flex items-center justify-between">
-          <h1 class="text-3xl font-bold text-slate-900">Expenses</h1>
-        </div>
+    <main class="flex-1 bg-gray-50/50 px-4 py-8 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900">Expense Tracking</h1>
+          <p class="mt-1 text-sm text-gray-500">Log your expenses to track your financial outflows.</p>
+        </header>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div class="col-span-1">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
               <h3 class="text-lg font-semibold mb-6">Add New Expense</h3>
-              <form class="space-y-6" method="POST" id="expense_form">
+              <form class="space-y-6" id="expense_form">
                 <div>
                   <label for="expense-name" class="block text-sm font-medium text-gray-700">Expense Name</label>
                   <input id="expense-name" name="expense_name" type="text" placeholder="e.g., Groceries, Rent"
@@ -52,7 +53,7 @@
                     <option>Rent</option>
                     <option>Transportation</option>
                     <option>Entertainment</option>
-                    <option>Other</option>
+                    <option selected>Other</option>
                   </select>
                 </div>
                 <div>
@@ -92,7 +93,7 @@
               </div>
             </div>
             <div class="overflow-x-hidden rounded-md border border-gray-200 bg-white shadow-sm">
-              <table class="w-full text-sm " id="expense">
+              <table class="w-full text-sm" id="expense">
                 <thead class="border-b border-gray-200 bg-gray-50 text-left">
                   <tr>
                     <th class="px-6 py-3 font-medium text-slate-600">Expense Name</th>

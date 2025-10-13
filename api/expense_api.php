@@ -28,16 +28,16 @@ if ($method == 'GET') {
     $frequency = $_POST['frequency'] ?? 'One-time';
     $user_id = $_POST['user_id'] ?? 0;
     $payment_method= $_POST['payment_method'] ?? 'In Cash';
-    if (!$expense_name || !$amount || !$category || !$payment_method || !$user_id) {
-        http_response_code(400);
-        echo json_encode(['message' => 'Please fill in all required fields.']);
-        exit();
-    }
+    // if (!$expense_name || !$amount || !$category || !$payment_method || !$user_id) {
+    //     http_response_code(400);
+    //     echo json_encode(['message' => 'Please fill in all required fields.']);
+    //     exit();
+    // }
     $insert = $conn->prepare("INSERT INTO expenses (expense_name, amount, currency, category, frequency, user_id, payment_method,notes) 
      VALUES (?, ?, ?,?,?,?,?,?)");
     $insert->bind_param("sisssiss",$expense_name,$amount,$currency,$category,$frequency,$user_id,$payment_method,$notes);
     if($insert->execute()){
-        sendResponse(200, ["id" => $conn->insert_id]);
+        sendResponse(200, ["id" => $conn->insert_id,"frequency"=>$frequency]);
         exit();
     }
     else {
@@ -47,6 +47,7 @@ if ($method == 'GET') {
 } elseif($method == 'PUT'){
     $input = json_decode(file_get_contents("php://input"), true);
     $id = $input['id'] ?? 1;
+    $expense_name = $input['expense_name'] ?? '';
     $amount= $input['amount'] ?? 0;
     $category= $input['category'] ?? '';
     $notes= $input['notes'] ?? '';
@@ -54,9 +55,8 @@ if ($method == 'GET') {
     $user_id = $input['user_id'] ?? 0;
     $payment_method= $input['payment_method'] ?? 'In Cash';
 
-    $update = $conn->prepare("UPDATE expenses set amount=COALESCE(?,amount),category=COALESCE(?,category),notes=COALESCE(?,notes),payment_method=COALESCE(?,payment_method)
-    where id=?");
-    $update->bind_param("isssi",$amount,$category,$notes,$payment_method,$id);
+    $update = $conn->prepare("UPDATE expenses set expense_name=COALESCE(?,expense_name), amount=COALESCE(?,amount), category=COALESCE(?,category), notes=COALESCE(?,notes), payment_method=COALESCE(?,payment_method) where id=?");
+    $update->bind_param("sisssi",$expense_name,$amount,$category,$notes,$payment_method,$id);
     if($update->execute()){
         sendResponse(200, ["id" => $id]);
         exit();
@@ -64,7 +64,7 @@ if ($method == 'GET') {
     else {
         sendResponse(500,['message' => 'Insert failed']);
     }
-}elseif($method=="DEL"){
+}elseif($method=="DELETE"){
     $input = json_decode(file_get_contents("php://input"), true);
     $id = $input['id'] ?? 1;
     $delete = $conn -> prepare("DELETE from expenses where id=?");
