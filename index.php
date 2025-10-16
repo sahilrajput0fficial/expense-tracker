@@ -8,12 +8,12 @@ if(!isset($_SESSION["user_id"])){
 $recentSql = "SELECT * FROM recenttransactions LIMIT 20";
 $recentResult = $conn->query($recentSql);
 
-$incomeSql = "SELECT * FROM income_sum";
+$incomeSql = "SELECT sum(income) as sum_income FROM income";
 $income = $conn->query($incomeSql);
 $incomeResult = $income->fetch_assoc();
 $Tincome = intval(($incomeResult["sum_income"]));
 
-$expSql = "SELECT * FROM expense_sum";
+$expSql = "SELECT sum(amount) as sum_exp FROM expenses";
 $exp = $conn->query($expSql);
 $expResult = $exp->fetch_assoc();
 $Texpense = intval(($expResult["sum_exp"]));
