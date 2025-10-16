@@ -20,7 +20,7 @@ $expenseText = "";
 foreach ($expenseData as $e) {
     $expenseText .= "{$e['category']} - ₹{$e['amount']} on {$e['created_at']}\n";
 }
-$apiKey = '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';
+$apiKey = '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';
 
 $totalIncome = $_POST['income'] ?? 0;
 $totalExpense = $_POST['expense'] ?? 0;
@@ -29,7 +29,7 @@ $prompt = "💰 Here's a snapshot of my finances:\n\nINCOME:\n$incomeText\n\nEXP
     . "Analyze my spending habits and savings potential. Give me the top 3 actionable tips to improve my 
     financial health in 60 words or less. Make it clear, practical, and easy to follow!";
 $data = [
-    "model" => "google/gemini-2.0-flash-001",
+    "model" => "z-ai/glm-4.61",
     "messages" => [
         ["role" => "system", "content" => "You are a friendly financial advisor."],
         ["role" => "user", "content" => $prompt]
