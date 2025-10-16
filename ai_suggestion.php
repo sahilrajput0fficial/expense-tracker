@@ -2,12 +2,12 @@
 include 'db.php';
 
 $incomeData = [];
-$incomeQuery = $conn->query("SELECT source, income, created_at FROM Incomes ORDER BY created_at DESC LIMIT 50");
+$incomeQuery = $conn->query("SELECT source, income, created_at FROM incomes ORDER BY created_at DESC LIMIT 50");
 while ($row = $incomeQuery->fetch_assoc()) {
     $incomeData[] = $row;
 }
 $expenseData = [];
-$expenseQuery = $conn->query("SELECT category, amount, created_at FROM Expenses ORDER BY created_at DESC LIMIT 50");
+$expenseQuery = $conn->query("SELECT category, amount, created_at FROM expenses ORDER BY created_at DESC LIMIT 50");
 while ($row = $expenseQuery->fetch_assoc()) {
     $expenseData[] = $row;
 }
