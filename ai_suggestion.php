@@ -29,7 +29,7 @@ $prompt = "💰 Here's a snapshot of my finances:\n\nINCOME:\n$incomeText\n\nEXP
     . "Analyze my spending habits and savings potential. Give me the top 3 actionable tips to improve my 
     financial health in 60 words or less. Make it clear, practical, and easy to follow!";
 $data = [
-    "model" => "z-ai/glm-4.61",
+    "model" => "openai/o4-mini",
     "messages" => [
         ["role" => "system", "content" => "You are a friendly financial advisor."],
         ["role" => "user", "content" => $prompt]
